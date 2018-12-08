@@ -1,3 +1,3 @@
 # flight-site
 
-Final project for Comp 426.
+Final project for Comp 426
