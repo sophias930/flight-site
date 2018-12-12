@@ -7,7 +7,7 @@
     float: left !important;
     margin: 10x;
     background: #ffffff !important;
-    max-width: 214px;
+    min-width: 214px;
     max-height: 200px;
     overflow: scroll;
     border: 1px solid #ddd;
@@ -21,7 +21,7 @@
     left: 307px;
     float: left !important;
     background: #ffffff !important;
-    max-width: 214px;
+    min-width: 214px;
     max-height: 200px;
     overflow: scroll;
     border: 1px solid #ddd;

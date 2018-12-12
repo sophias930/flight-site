@@ -33,12 +33,12 @@ function checkLogin() {
 function buildBasicFirstPage() {
     // just set up the initial page 
     $('body').empty();
-    $('body').append('<div class="header container-fluid"><h1>' + appname + '</h1></div><div class="inputs container-fluid">');
-    $('body').append('To:  <input type="text" id="to">&nbsp;&nbsp;From:<input type="text" id="from">');
+    $('body').append('<div class="header jumbotron-fluid container-fluid"><img class="rounded float-right border border-dark" src="./resources/TB.jpg" alt="Sophia"><h1 class="display-4">' + appname + '</h1></div><div class="inputs container-fluid">');
+    $('body').append('To:  <input type="text" id="to" placeholder="Ex: RDU">&nbsp;&nbsp;From:<input type="text" id="from" placeholder="Ex: JFK">');
     $('body').append('<div class="drops"><div id="dropdownTo" class="dropdownTo"></div><div id="dropdownFrom" class="dropdownFrom"></div></div>');
     $('body').append('<br><input type="button" value="Submit" id="submit" class="btn btn-outline-primary btn-sm"></div><br><br><div class="flights"></div>');
-    $('body').append('<div class="container-fluid"><h5 class="mt-0">Some Words from the Team</h5></div><div class="media container-fluid p-3 mb-2  bg-success text-white"><img class="mr-3 rounded-circle border border-light" src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-1/p160x160/35922718_386881408464842_8619843468644057088_n.jpg?_nc_cat=111&_nc_ht=scontent-iad3-1.xx&oh=96d05b640d42f69bb84532bc069ad003&oe=5C9B95BC" alt="Sophia"><div class="media-body">My family has always had some concerns about my love for Taco Bell, but this website has made it so much better (worse??)!  Now no matter where I go I can make sure I am well stocked in chalupas.  I think my friends are staging an intervention as we speak, but the joke is on them: no one can stop me from searching all my future travel destinations for Taco Bell with this convenient website! -Sophia Shaikh</div></div><br>');
-    $('body').append('<div class="media container-fluid p-3 mb-2 bg-success text-white"><img class="mr-3 rounded-circle border border-light" src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-1/p160x160/45569168_321454448683763_6393970761912025088_n.jpg?_nc_cat=101&_nc_ht=scontent-iad3-1.xx&oh=2e85334f48ac3ab00e685434471b085b&oe=5C656D8B" alt="Tiara"><div class="media-body rounded-circle">Yeah to be honest, Sophia scares the shit out of me.  I am way too scared to say anything against her chalupa addiction, so this site has been an amazing way to appease her when we travel together! -Tiara Mathur</div></div>');
+    $('body').append('<div class="container-fluid"><h5 class="mt-0">Some Words from the Team</h5></div><div class="media container-fluid p-3 mb-2  bg-success text-white"><img class="mr-3 rounded-circle border border-light" src="./resources/Sophia.jpg" alt="Sophia"><div class="media-body">My family has always had some concerns about my love for Taco Bell, but this website has made it so much better (worse??)!  Now no matter where I go I can make sure I am well stocked in chalupas.  I think my friends are staging an intervention as we speak, but the joke is on them: no one can stop me from searching all my future travel destinations for Taco Bell with this convenient website! -Sophia Shaikh</div></div><br>');
+    $('body').append('<div class="media container-fluid p-3 mb-2 bg-success text-white"><img class="mr-3 rounded-circle border border-light" src="./resources/Tiara.jpg" alt="Tiara"><div class="media-body rounded-circle">Yeah to be honest, Sophia scares the shit out of me.  I am way too scared to say anything against her chalupa addiction, so this site has been an amazing way to appease her when we travel together! -Tiara Mathur</div></div>');
     $('#submit').click(function() {
         buildTable();
     })
@@ -79,7 +79,7 @@ function buildDropDownTo() {
             dataType: 'json',
             success: function (response) {
                 for (let i = 0; i < response.length; i++) {
-                    menu.append("<p>" + response[i].name + "</p>");
+                    menu.append("<p>" + response[i].code + "</p>");
                 }
             }
         });
@@ -100,7 +100,9 @@ function buildDropDownFrom() {
             dataType: 'json',
             success: function (response) {
                 for (let i = 0; i < response.length; i++) {
-                    menu.append("<p>" + response[i].name + "</p>");
+                    let cod = response[i].code;
+                    let item = $("<p>" + response[i].code + "</p>");
+                    menu.append(item);
                 }
             }
         });
