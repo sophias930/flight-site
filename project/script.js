@@ -175,7 +175,6 @@ function buildTable() {
         getFlights();
     }
 
-
     function getFlights() {
         $.ajax(root + 'flights?filter[arrival_id]=' + toID + '&filter[departure_id]=' + fromID,
             {
@@ -352,9 +351,53 @@ function buildTicketPage() {
     $('body').empty();
     $('body').append('<div class="header"><h1>'+appname+'</h1></div>')
     $('body').append('<input type="button" value="Home" id="home"><br><br>');
+    $('body').append('<input type="button" value="Find Taco Bell nearby!" id="taco"><br><br>');
+
     $('body').append('<br><div class="progress"><div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div></div>');
     $('#home').click(function () {
         buildBasicFirstPage();
     })
+    $('#taco').click(function () {
+        getChalupas();
+    })
     $('body').append("Thanks for buying a ticket!");
 }
+
+function getChalupas() {
+    $('body').empty();
+    $.ajax('https://api.foursquare.com/v2/venues/explore?near=' + to + '&query=Taco Bell&client_id=4PDMII2R5FLOUCK41PBDCT1ZT5KOFUAVXUGMUESTPGFJPNSU&client_secret=JE5M421ZCTE1J5T3A2HD3EK5ZJAHZFO0IE04RTYVRZSR0EL1&v=20181212',
+        {
+            type: 'GET',
+            dataType: 'json',
+            success: (response) => {
+                $('body').append("Taco bells near " + to + ":");
+                var crunchwrap = JSON.stringify(response);
+                var temp = "";
+                var temp2 = "";
+                crunchwrap = crunchwrap.split("\"items\":");
+                temp = crunchwrap[1];
+                for (let i = 2; i < crunchwrap.length; i++) {
+                    temp += "\"items\":" + crunchwrap[i];
+                }
+                temp = temp.slice(0, -4);
+                crunchwrap = JSON.parse(temp);
+
+                for (let i = 0; i < 3; i++) {
+                    var br = document.createElement("br");
+                    $('body').append(br)
+                    temp = JSON.stringify(crunchwrap[i].venue.location.formattedAddress);
+                    temp2 = temp.replace("[", "");
+                    temp2 = temp2.replace("]", "");
+                    temp2 = temp2.replace(/"/g, "");
+                    $('body').append("Taco Bell #" + (i + 1) + ": " + temp2);
+                }
+            },
+            error: () => {
+                alert('Sorry, something went wrong.');
+            }
+        })
+        $('body').append('<input type="button" value="Home" id="home"><br><br>');
+        $('#home').click(function () {
+            buildBasicFirstPage();
+        })
+    }
