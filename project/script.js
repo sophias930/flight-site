@@ -241,8 +241,31 @@ function buildSecondPage(flightObject) {
                         // check for blanks
                         if ($('#fname').val() == "" || $('#lname').val() == "" || $('#age').val() == ""
                             || $('#gender').val() == "") {
-                        alert("Please fill all fields!"); 
-                    }
+                            alert("Please fill all fields!");
+                        }
+                        $.ajax(root + 'tickets',
+                            {
+                                type: 'POST',
+                                xhrFields: { withCredentials: true },
+                                dataType: 'json',
+                                data: {
+                                    ticket: {
+                                        first_name:   $('#fname').val(),
+                                        last_name:    $('#lname').val(),
+                                        age:          $('#age').val(),
+                                        gender:       $('#gender').val(),
+                                        is_purchased: true,
+                                        instance_id:  itineraryID,
+                                        seat_id:   seatID
+                                      }
+                                },
+                                success: function (response) {
+                                    console.log(response);
+                                },
+                                error: () => {
+                                    alert('Check your connection and try again.');
+                                }
+                            });
                     });
             });
 
