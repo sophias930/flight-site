@@ -101,7 +101,6 @@ function buildDropDownFrom() {
             dataType: 'json',
             success: function (response) {
                 for (let i = 0; i < response.length; i++) {
-                    let cod = response[i].code;
                     let item = $("<p>" + response[i].code + "</p>");
                     menu.append(item);
                 }
@@ -210,7 +209,7 @@ function buildTable() {
                         $('#' + thisFlight).append("&nbsp;&nbsp;&nbsp;$" + Math.floor((Math.random() * 1000) + 100));
 
                         // button to purchase
-                        $('#' + thisFlight).append('&nbsp;&nbsp;&nbsp;<input type="button" class="choose btn btn-primary btn" id="button' +
+                        $('#' + thisFlight).append('&nbsp;&nbsp;&nbsp;<input type="button" class="choose btn btn-primary btn-small" id="button' +
                             i + '" value="Select">');
                         $('#button' + i).click(function () {
                             buildSecondPage(flightArray[i], departs[0]+":"+departs[1]);
@@ -256,12 +255,12 @@ function buildSecondPage(flightObject, departTime) {
     $('body').append('<div class="form-group"</div>');
     $('.form-group').append('You selected: ' + from + " to " + to + ", departing at " + departTime + '.<br><br>');
     $('.form-group').append('Please fill out your information:<br>');
-    $('.form-group').append('<label>First Name: </label>' + '<input type="text" id="fname" class="form-control"><br>');
-    $('.form-group').append('<label>Last Name: </label>' + '<input type="text" id="lname" class="form-control"><br>');
-    $('.form-group').append('<label>Age: </label>' + '<input type="text" id="age" class="form-control"><br>');
-    $('.form-group').append('<label>Gender: </label>' + '<input type="text" id="gender" class="form-control"><br>');
+    $('.form-group').append('<label>First Name: </label>' + '<input type="text" id="fname" class="form-control">');
+    $('.form-group').append('<label>Last Name: </label>' + '<input type="text" id="lname" class="form-control">');
+    $('.form-group').append('<label>Age: </label>' + '<input type="text" id="age" class="form-control">');
+    $('.form-group').append('<label>Gender: </label>' + '<input type="text" id="gender" class="form-control">');
     $('.form-group').append('<label>Email Address: </label>' + '<input type="text" id="email" class="form-control"><br>');
-    $('.form-group').append('<input type="button" id="submitTicket" value="Submit" class="btn btn-primary"><br>')
+    $('.form-group').append('<input type="button" id="submitTicket" value="Submit" class="btn btn-primary">')
     $('body').append('<br><div class="progress"><div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div></div>');
 
     $('#submitTicket').click(function () {
@@ -352,13 +351,12 @@ function buildSecondPage(flightObject, departTime) {
 
 function buildTicketPage() {
     $('body').empty();
-    $('body').append('<div class="header container-fluid jumbotron-fluid"><h1 class="display-4">'+appname+'</h1></div>');
+    $('body').append('<div class="header container-fluid jumbotron-fluid"><h1 class="display-4">'+appname+'</h1><img src="./resources/chalupa.jpg" alt="Yum"></div><br>');
     $('body').append('<input type="button" class="btn btn-secondary" value="Home" id="home"><br><br>');
     
     $('#home').click(function () {
         buildBasicFirstPage();
     })
-    $('body').append("Thanks for buying a ticket!");
-    $('body').append('<img src="./resources/chalupa.jpg" alt="Yum"><blockquote>Now rest easy knowing you have a safe space no matter where you are <3</blockquote>');
+    $('body').append("Thanks for buying a ticket!<blockquote>Now rest easy knowing you have a safe space no matter where you are <3</blockquote>");
     $('body').append('<br><div class="progress"><div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div></div>');
 }
