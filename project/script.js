@@ -34,9 +34,11 @@ function buildBasicFirstPage() {
     // just set up the initial page 
     $('body').empty();
     $('body').append('<div class="header jumbotron-fluid container-fluid"><img class="rounded float-right border border-dark" src="./resources/TB.jpg" alt="Sophia"><h1 class="display-4">' + appname + '</h1></div><div class="inputs container-fluid">');
+    $('body').append('<div class="container-fluid"><blockquote>We&apos;ve all been there: You&apos;re trying to have the best vacation of your life, but something is wrong...  Where the hell is the Taco Bell in this stupid city??  Well worry no more because Taco Traveler is here for YOU.  Using FourSquare, we took all the manic searching out of your trip; simply start by entering the airports you plan to travel between and book your ticket!</blockquote></div>');
     $('body').append('To:  <input type="text" id="to" placeholder="Ex: RDU">&nbsp;&nbsp;From:<input type="text" id="from" placeholder="Ex: JFK">');
     $('body').append('<div class="drops"><div id="dropdownTo" class="dropdownTo"></div><div id="dropdownFrom" class="dropdownFrom"></div></div>');
     $('body').append('<br><input type="button" value="Submit" id="submit" class="btn btn-outline-primary btn-sm"></div><br><br><div class="flights"></div>');
+    $('body').append('<br><div class="progress"><div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div></div>');
     $('body').append('<div class="container-fluid"><h5 class="mt-0">Some Words from the Team</h5></div><div class="media container-fluid p-3 mb-2  bg-success text-white"><img class="mr-3 rounded-circle border border-light" src="./resources/Sophia.jpg" alt="Sophia"><div class="media-body">My family has always had some concerns about my love for Taco Bell, but this website has made it so much better (worse??)!  Now no matter where I go I can make sure I am well stocked in chalupas.  I think my friends are staging an intervention as we speak, but the joke is on them: no one can stop me from searching all my future travel destinations for Taco Bell with this convenient website! -Sophia Shaikh</div></div><br>');
     $('body').append('<div class="media container-fluid p-3 mb-2 bg-success text-white"><img class="mr-3 rounded-circle border border-light" src="./resources/Tiara.jpg" alt="Tiara"><div class="media-body rounded-circle">Yeah to be honest, Sophia scares the shit out of me.  I am way too scared to say anything against her chalupa addiction, so this site has been an amazing way to appease her when we travel together! -Tiara Mathur</div></div>');
     $('#submit').click(function() {
@@ -259,6 +261,8 @@ function buildSecondPage(flightObject, departTime) {
     $('body').append('Gender: ' + '<input type="text" id="gender"><br>');
     $('body').append('Email Address: ' + '<input type="text" id="email"><br>');
     $('body').append('<input type="button" id="submitTicket" value="Submit"><br>')
+    $('body').append('<br><div class="progress"><div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div></div>');
+
     $('#submitTicket').click(function () {
         // make calls to send the info to the correct places
 
@@ -349,6 +353,7 @@ function buildTicketPage() {
     $('body').empty();
     $('body').append('<div class="header"><h1>'+appname+'</h1></div>')
     $('body').append('<input type="button" value="Home" id="home"><br><br>');
+    $('body').append('<br><div class="progress"><div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div></div>');
     $('#home').click(function () {
         buildBasicFirstPage();
     })
