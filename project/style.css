@@ -2,6 +2,10 @@
     border: thin solid black;
 }
 
+.choose {
+    margin-left: 50px;
+}
+
 #reviews {
     background: #6cf06c;
     padding-bottom: 20px;
