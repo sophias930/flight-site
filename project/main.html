@@ -17,7 +17,7 @@
 
 </head>
 
-<body>
+<body class="p-3 mb-2 bg-light text-dark">
 
     <!-- build to be the front page, all the flights  
             (we just need all the divs in place here so that
@@ -25,14 +25,17 @@
     <div class="header container-fluid">
         <h1>Cool App Name</h1>
     </div>
-    <div class="inputs container-fluid">
+    <div class="inputs container-fluid dropdown">
         To:  
-        <input type="text" id="to">
+        <input type="text" id="to" class="dropdown-toggle">
         &nbsp;&nbsp;From:
-        <input type="text" id="from">
+        <input type="text" id="from" class="dropdown-toggle">
         <br>
         <input type="button" value="Submit" id="submit" class="btn btn-outline-primary btn-sm">
 
+        <div class="dropdown-menu" aria-labelledby="to">
+
+        </div>
     </div>
     <br>
     <!--  add div for organization of all the flights -->
@@ -40,14 +43,14 @@
 
     <!-- Just some reviews <3 -->
     <div class="container-fluid"><h5 class="mt-0">Some Words from the Team</h5></div>
-    <div class="media container">
+    <div class="media container p-3 mb-2 bg-success text-white">
         <img class="mr-3" src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-1/p160x160/35922718_386881408464842_8619843468644057088_n.jpg?_nc_cat=111&_nc_ht=scontent-iad3-1.xx&oh=96d05b640d42f69bb84532bc069ad003&oe=5C9B95BC" alt="Generic placeholder image">
         <div class="media-body">
             My family's always had some concerns about my love for Taco Bell, but this website's made it so much better (worse??)!  Now no matter where I go I can make sure I'm well stocked in chalupas.  I think my friends are staging an intervention as we speak, but the joke's on them: no one can stop me from searching all my future travel destinations for Taco Bell with this convenient website! -Sophia Shaikh
         </div>
     </div>
     <br>
-    <div class="media container">
+    <div class="media container p-3 mb-2 bg-success text-white">
         <img class="mr-3" src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-1/p160x160/45569168_321454448683763_6393970761912025088_n.jpg?_nc_cat=101&_nc_ht=scontent-iad3-1.xx&oh=2e85334f48ac3ab00e685434471b085b&oe=5C656D8B" alt="Generic placeholder image">
         <div class="media-body">
             Yeah to be honest, Sophia scares the shit out of me.  I'm way too scared to say anything against her chalupa addiction, so this site has been an amazing way to appease her when we travel together! -Tiara Mathur
