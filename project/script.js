@@ -1,5 +1,5 @@
 var root = "http://comp426.cs.unc.edu:3001/";
-
+var appname = "Taco Traveler";
 
 $(document).ready(() => {
     checkLogin();
@@ -93,6 +93,9 @@ function buildDropDownFrom() {
     
 }
 
+var to;
+var from;
+
 function buildTable() {
 
     // EDGE CASE: if a field is empty, return error message
@@ -102,8 +105,8 @@ function buildTable() {
 
     $('.flights').empty();
     // getting airports and finding corresponding flights 
-    let to = $('#to').val();
-    let from = $('#from').val();
+    to = $('#to').val();
+    from = $('#from').val();
     let toID = 0;
     let toSet = false;
     let fromID = 0;
@@ -192,7 +195,7 @@ function buildTable() {
                         $('#' + thisFlight).append('&nbsp;&nbsp;&nbsp;<input type="button" class="choose" id="button' +
                             i + '" value="Select">');
                         $('#button' + i).click(function () {
-                            buildSecondPage(flightArray[i]);
+                            buildSecondPage(flightArray[i], departs[0]+":"+departs[1]);
                         })
                     }
 
@@ -204,9 +207,9 @@ function buildTable() {
     }
 }
 
-function buildSecondPage(flightObject) {
+function buildSecondPage(flightObject, departTime) {
     $('body').empty();
-    $('body').append('<div class="header"><h1>Cool App Name</h1></div>')
+    $('body').append('<div class="header"><h1>'+appname+'</h1></div>')
     $('body').append('<input type="button" value="Back" id="back"><br><br>');
     $('#back').click(function () {
         buildBasicFirstPage();
@@ -231,7 +234,7 @@ function buildSecondPage(flightObject) {
                 alert('Check your connection and try again.');
             }
         });
-
+    $('body').append('You selected: ' + from + " to " + to + ", departing at " + departTime + '.<br><br>');
     $('body').append('Please fill out your information:<br>');
     $('body').append('First Name: ' + '<input type="text" id="fname"><br>');
     $('body').append('Last Name: ' + '<input type="text" id="lname"><br>');
@@ -316,9 +319,21 @@ function buildSecondPage(flightObject) {
                                 error: () => {
                                     alert('Check your connection and try again.');
                                 }
-                            });
+                            }).done(function() {
+                                buildTicketPage();
+                            })
                     });
             });
 
     });
+}
+
+function buildTicketPage() {
+    $('body').empty();
+    $('body').append('<div class="header"><h1>'+appname+'</h1></div>')
+    $('body').append('<input type="button" value="Home" id="home"><br><br>');
+    $('#home').click(function () {
+        buildBasicFirstPage();
+    })
+    $('body').append("Thanks for buying a ticket!");
 }
