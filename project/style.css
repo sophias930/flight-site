@@ -1,3 +1,25 @@
 .flight {
     border: thin solid black;
 }
+
+.dropdownFrom {
+    position: absolute;
+    float: left;
+    background-color: #f6f6f6;
+    max-width: 225px;
+    max-height: 200px;
+    overflow: scroll;
+    border: 1px solid #ddd;
+    z-index: 1;
+}
+
+.dropdownTo {
+    position: absolute;
+    float: left;
+    background-color: #f6f6f6;
+    max-width: 225px;
+    max-height: 200px;
+    overflow: scroll;
+    border: 1px solid #ddd;
+    z-index: 1;
+}
