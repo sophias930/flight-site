@@ -1,5 +1,5 @@
 var root = "http://comp426.cs.unc.edu:3001/";
-
+var appname = "Taco Traveler";
 
 $(document).ready(() => {
     checkLogin();
@@ -33,7 +33,7 @@ function checkLogin() {
 function buildBasicFirstPage() {
     // just set up the initial page 
     $('body').empty();
-    $('body').append('<div class="header container-fluid"><h1>Cool App Name</h1></div><div class="inputs container-fluid">');
+    $('body').append('<div class="header container-fluid"><h1>'+appname+'</h1></div><div class="inputs container-fluid">');
     $('body').append('To:  <input type="text" id="to" class="dropdown-toggle">&nbsp;&nbsp;From:<input type="text" id="from" class="dropdown-toggle">');
     $('body').append('<br><input type="button" value="Submit" id="submit" class="btn btn-outline-primary btn-sm"></div><div class="dropdown-menu" aria-labelledby="to"><a class="dropdown-item" href="#">Action</a></div><br><br><div class="flights"></div>');
     $('body').append('<div class="container-fluid"><h5 class="mt-0">Some Words from the Team</h5></div><div class="media container p-3 mb-2 bg-success text-white"><img class="mr-3 rounded-circle" src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-1/p160x160/35922718_386881408464842_8619843468644057088_n.jpg?_nc_cat=111&_nc_ht=scontent-iad3-1.xx&oh=96d05b640d42f69bb84532bc069ad003&oe=5C9B95BC" alt="Sophia"><div class="media-body">My family has always had some concerns about my love for Taco Bell, but this website has made it so much better (worse??)!  Now no matter where I go I can make sure I am well stocked in chalupas.  I think my friends are staging an intervention as we speak, but the joke is on them: no one can stop me from searching all my future travel destinations for Taco Bell with this convenient website! -Sophia Shaikh</div></div><br>');
@@ -44,6 +44,9 @@ function buildBasicFirstPage() {
 
 }
 
+var to;
+var from;
+
 function buildTable() {
 
     // EDGE CASE: if a field is empty, return error message
@@ -53,8 +56,8 @@ function buildTable() {
 
     $('.flights').empty();
     // getting airports and finding corresponding flights 
-    let to = $('#to').val();
-    let from = $('#from').val();
+    to = $('#to').val();
+    from = $('#from').val();
     let toID = 0;
     let toSet = false;
     let fromID = 0;
@@ -143,7 +146,7 @@ function buildTable() {
                         $('#' + thisFlight).append('&nbsp;&nbsp;&nbsp;<input type="button" class="choose" id="button' +
                             i + '" value="Select">');
                         $('#button' + i).click(function () {
-                            buildSecondPage(flightArray[i]);
+                            buildSecondPage(flightArray[i], departs[0]+":"+departs[1]);
                         })
                     }
 
@@ -155,9 +158,9 @@ function buildTable() {
     }
 }
 
-function buildSecondPage(flightObject) {
+function buildSecondPage(flightObject, departTime) {
     $('body').empty();
-    $('body').append('<div class="header"><h1>Cool App Name</h1></div>')
+    $('body').append('<div class="header"><h1>'+appname+'</h1></div>')
     $('body').append('<input type="button" value="Back" id="back"><br><br>');
     $('#back').click(function () {
         buildBasicFirstPage();
@@ -182,7 +185,7 @@ function buildSecondPage(flightObject) {
                 alert('Check your connection and try again.');
             }
         });
-
+    $('body').append('You selected: ' + from + " to " + to + ", departing at " + departTime + '.<br><br>');
     $('body').append('Please fill out your information:<br>');
     $('body').append('First Name: ' + '<input type="text" id="fname"><br>');
     $('body').append('Last Name: ' + '<input type="text" id="lname"><br>');
@@ -267,9 +270,21 @@ function buildSecondPage(flightObject) {
                                 error: () => {
                                     alert('Check your connection and try again.');
                                 }
-                            });
+                            }).done(function() {
+                                buildTicketPage();
+                            })
                     });
             });
 
     });
+}
+
+function buildTicketPage() {
+    $('body').empty();
+    $('body').append('<div class="header"><h1>'+appname+'</h1></div>')
+    $('body').append('<input type="button" value="Home" id="home"><br><br>');
+    $('#home').click(function () {
+        buildBasicFirstPage();
+    })
+    $('body').append("Thanks for buying a ticket!");
 }
