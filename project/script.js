@@ -35,7 +35,7 @@ function buildBasicFirstPage() {
     $('body').empty();
     $('body').append('<div class="header jumbotron-fluid container-fluid"><img class="rounded float-right border border-dark" src="./resources/TB.jpg" alt="Sophia"><h1 class="display-4">' + appname + '</h1></div><div class="inputs container-fluid">');
     $('body').append('<div class="container-fluid"><blockquote>We&apos;ve all been there: You&apos;re trying to have the best vacation of your life, but something is wrong...  Where the hell is the Taco Bell in this stupid city??  Well worry no more because Taco Traveler is here for YOU.  Using FourSquare, we took all the manic searching out of your trip; simply start by entering the airports you plan to travel between and book your ticket!</blockquote></div>');
-    $('body').append('To:  <input type="text" id="to" placeholder="Ex: RDU">&nbsp;&nbsp;From:<input type="text" id="from" placeholder="Ex: JFK">');
+    $('body').append('To:  <input type="text" id="to" placeholder="Ex: RDU" onchange="buildTable();">&nbsp;&nbsp;From:<input type="text" id="from" placeholder="Ex: JFK" onchange="buildTable();">');
     $('body').append('<div class="drops"><div id="dropdownTo" class="dropdownTo"></div><div id="dropdownFrom" class="dropdownFrom"></div></div>');
     $('body').append('<br><input type="button" value="Submit" id="submit" class="btn btn-outline-primary btn-sm"></div><br><br><div class="flights"></div>');
     $('body').append('<br><div class="progress"><div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div></div>');
