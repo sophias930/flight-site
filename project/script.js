@@ -350,7 +350,6 @@ function buildSecondPage(flightObject, departTime) {
 
 function buildTicketPage() {
     $('body').empty();
-<<<<<<< HEAD
     $('body').append('<div class="header"><h1>'+appname+'</h1></div>')
     $('body').append('<input type="button" value="Home" id="home"><br><br>');
     $('body').append('<input type="button" value="Find Taco Bell nearby!" id="taco"><br><br>');
@@ -363,16 +362,6 @@ function buildTicketPage() {
         getChalupas();
     })
     $('body').append("Thanks for buying a ticket!");
-=======
-    $('body').append('<div class="header container-fluid jumbotron-fluid"><h1 class="display-4">'+appname+'</h1><img src="./resources/chalupa.jpg" alt="Yum"></div><br>');
-    $('body').append('<input type="button" class="btn btn-secondary" value="Home" id="home"><br><br>');
-    
-    $('#home').click(function () {
-        buildBasicFirstPage();
-    })
-    $('body').append("Thanks for buying a ticket!<blockquote>Now rest easy knowing you have a safe space no matter where you are <3</blockquote>");
-    $('body').append('<br><div class="progress"><div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div></div>');
->>>>>>> 105ae6f954d34d58b2f3a9bcb98c8c0921ead195
 }
 
 function getChalupas() {
@@ -403,6 +392,14 @@ function getChalupas() {
                     temp2 = temp2.replace(/"/g, "");
                     $('body').append("Taco Bell #" + (i + 1) + ": " + temp2);
                 }
+                var tacos = document.createElement("img");
+                tacos.setAttribute('src', 'https://static.gamespot.com/uploads/original/1585/15855271/3451784-taco+bell+%2B+xbox+-+%245+double+chalupa+box+3.jpg');
+                tacos.setAttribute('width', '600px');
+                var br = document.createElement("br");
+                $('body').append(br)
+                var br2 = document.createElement("br");
+                $('body').append(br2)
+                $('body').append(tacos);
             },
             error: () => {
                 alert('Sorry, something went wrong.');
