@@ -31,8 +31,7 @@ function checkLogin() {
 }
 
 function buildBasicFirstPage() {
-    // TODO build this page!!!! 
-        // make api calls and whatever; 
+    // just set up the initial page 
     $('body').empty();
     $('body').append('<div class="header"><h1>Cool App Name</h1></div><div class="inputs">');
     $('body').append('To:  <input type="text" id="to">&nbsp;&nbsp;From:<input type="text" id="from">');
@@ -44,6 +43,7 @@ function buildBasicFirstPage() {
 }
 
 function buildTable() {
+
 // EDGE CASE: if a field is empty, return error message
         // do we need to worry about this if we have a drop down select
         // thing?? maybe we could have default options already selected
@@ -187,5 +187,34 @@ function buildSecondPage(flightObject) {
     $('body').append('Age: '+'<input type="text" id="age"><br>');
     $('body').append('Gender: '+'<input type="text" id="gender"><br>');
     $('body').append('Email Address: '+'<input type="text" id="email"><br>');
+    $('body').append('<input type="button" id="submitTicket" value="Submit"><br>')
+    $('#submitTicket').click(function() {
+// make calls to send the info to the correct places
+    
+    // make itinerary
+    $.ajax(root + 'itineraries',
+    {
+        type: 'POST',
+        xhrFields: { withCredentials: true },
+        dataType: 'json',
+        data: {
+            itinerary: {
+                email:  $('#email').val(),
+              }
+        },
+        success: function(response) {
+            console.log(response);
+        },
+        error: () => {
+            alert('Check your connection and try again.');
+        }
+    });
+
+    // make seat
+
+    // make ticket (include itinerary and seat!)
+    })
+
+    
 
 }
