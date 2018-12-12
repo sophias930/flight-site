@@ -2,24 +2,27 @@
     border: thin solid black;
 }
 
-.dropdownFrom {
-    position: absolute;
-    float: left;
-    background-color: #f6f6f6;
-    max-width: 225px;
+#dropdownTo {
+    display: none;
+    float: left !important;
+    margin: 10x;
+    background: #ffffff !important;
+    max-width: 214px;
     max-height: 200px;
     overflow: scroll;
     border: 1px solid #ddd;
-    z-index: 1;
+    position: absolute;
+    left: 42px;
 }
 
-.dropdownTo {
+#dropdownFrom {
+    display: none;
     position: absolute;
-    float: left;
-    background-color: #f6f6f6;
-    max-width: 225px;
+    left: 307px;
+    float: left !important;
+    background: #ffffff !important;
+    max-width: 214px;
     max-height: 200px;
     overflow: scroll;
     border: 1px solid #ddd;
-    z-index: 1;
 }
