@@ -3,10 +3,8 @@ var root = "http://comp426.cs.unc.edu:3001/";
 
 $(document).ready(() => {
     checkLogin();
-
-    $('#submit').click(function() {
-        buildBasicFirstPage();
-    })    
+    buildBasicFirstPage();
+  
 });
 
 function checkLogin() {
@@ -35,35 +33,24 @@ function checkLogin() {
 function buildBasicFirstPage() {
     // TODO build this page!!!! 
         // make api calls and whatever; 
-    $('.flights').empty();
+    $('body').empty();
+    $('body').append('<div class="header"><h1>Cool App Name</h1></div><div class="inputs">');
+    $('body').append('To:  <input type="text" id="to">&nbsp;&nbsp;From:<input type="text" id="from">');
+    $('body').append('<br><input type="button" value="Submit" id="submit"></div><br><br><div class="flights"></div>');
+    $('#submit').click(function() {
+        buildTable();
+    })  
+            
+}
 
-    // EDGE CASE: if a field is empty, return error message
+function buildTable() {
+// EDGE CASE: if a field is empty, return error message
         // do we need to worry about this if we have a drop down select
         // thing?? maybe we could have default options already selected
 
-    // retrieve the matching instances and whatever 
 
-    // INSTANCES TAKE TOO LONG, LETS JUST USE AIRPORTS
-    /*
-    $.ajax(root + 'instances?filter[date]=2018-12-01',
-    {
-        type: 'GET',
-        xhrFields: { withCredentials: true },
-        dataType: 'json',
-        success: (response) => {
-            console.log(response);
-            
-            let instanceArray = response;
-            for (let i = 0; i < instanceArray.length; i++) {
-                $('body').append(instanceArray[i].name);
-
-            }
-        },
-        error: () => {
-            alert('Check your connection and try again.');
-        }
-    }); */
-
+    $('.flights').empty();
+    // getting airports and finding corresponding flights 
     let to = $('#to').val(); 
     let from = $('#from').val();
     let toID = 0;
@@ -153,6 +140,9 @@ function buildBasicFirstPage() {
                     // button to purchase
                     $('#'+thisFlight).append('&nbsp;&nbsp;&nbsp;<input type="button" class="choose" id="button'+
                         i+'" value="Select">');
+                    $('#button'+i).click(function() {
+                        buildSecondPage(flightArray[i]);
+                    })
                 }
     
             },
@@ -161,9 +151,41 @@ function buildBasicFirstPage() {
             }
         });
     }
-            
 }
 
-function buildSecondPage() {
+function buildSecondPage(flightObject) {
+    $('body').empty();
+    $('body').append('<div class="header"><h1>Cool App Name</h1></div>')
+    $('body').append('<input type="button" value="Back" id="back"><br><br>');
+    $('#back').click(function() {
+        buildBasicFirstPage();
+    })
+    let airline_id = flightObject.airline_id;
+
+    $.ajax(root + 'airlines?filter[id]='+airline_id,
+    {
+        type: 'GET',
+        xhrFields: { withCredentials: true },
+        dataType: 'json',
+        success: function(response) {
+            let airlineArray = response;
+            for (let i = 0; i < airlineArray.length; i++) {
+                if (airlineArray[i].id == airline_id) {
+                    $('body').append('<div class="airline"><h2>You will riding with '+airlineArray[i].name+'!</h2></div');
+                }
+            }
+            console.log(response);
+        },
+        error: () => {
+            alert('Check your connection and try again.');
+        }
+    });
+
+    $('body').append('Please fill out your information:<br>');
+    $('body').append('First Name: ' + '<input type="text" id="fname"><br>');
+    $('body').append('Last Name: '+'<input type="text" id="lname"><br>');
+    $('body').append('Age: '+'<input type="text" id="age"><br>');
+    $('body').append('Gender: '+'<input type="text" id="gender"><br>');
+    $('body').append('Email Address: '+'<input type="text" id="email"><br>');
 
 }
